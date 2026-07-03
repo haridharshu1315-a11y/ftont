@@ -1,0 +1,173 @@
+  <main>
+    <table id="cart-table">
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th>Price ($)</th>
+          <th>Quantity</th>
+          <th>Subtotal ($)</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+
+    <div class="total">
+      Total: <strong>$<span id="total-amount">0</span></strong>
+    </div>
+
+    <button class="place-order" onclick="placeOrder()">Place Order</button>
+
+    <!-- 🏠 Delivery Address Section -->
+    <div class="payment-section">
+      <h3>Delivery Address</h3>
+      <input type="text" id="name" placeholder="Full Name" required>
+      <input type="text" id="address" placeholder="Full Address" required>
+      <input type="text" id="city" placeholder="City" required>
+      <input type="text" id="pincode" placeholder="Pincode" required>
+      <input type="text" id="phone" placeholder="Phone Number" required>
+
+      <h3>Choose Payment Method</h3>
+      <div class="payment-option">
+        <label><input type="radio" name="payment" value="UPI"> UPI / Google Pay / PhonePe</label><br>
+        <label><input type="radio" name="payment" value="Card"> Debit / Credit Card</label><br>
+        <label><input type="radio" name="payment" value="NetBanking"> Net Banking</label><br>
+        <label><input type="radio" name="payment" value="COD"> Cash on Delivery (COD)</label>
+      </div>
+      <button class="pay-now" onclick="processPayment()">💰 Pay Now</button>
+    </div>
+  </main>
+
+  <div id="toast" class="toast"></div>
+
+  <script>
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    const tbody = document.querySelector("#cart-table tbody");
+    const totalAmount = document.getElementById("total-amount");
+
+    function renderCart() {
+      tbody.innerHTML = "";
+      let total = 0;
+
+      if (cart.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="5" style="text-align:center;">🛍️ Your cart is empty</td></tr>`;
+        totalAmount.textContent = "0";
+        return;
+      }
+
+      cart.forEach((item, index) => {
+        const subtotal = item.price * item.quantity;
+        total += subtotal;
+
+        const row = document.createElement("tr");
+        row.innerHTML = `
+          <td>${item.name}</td>
+          <td>${item.price.toLocaleString()}</td>
+          <td>
+            <input type="number" id="qty-${index}" value="${item.quantity}" min="1"
+              onchange="updateQuantity(${index})" onkeyup="updateQuantity(${index})" />
+          </td>
+          <td id="subtotal-${index}">${subtotal.toLocaleString()}</td>
+          <td><button class="remove-btn" onclick="removeItem(${index})">Remove</button></td>
+        `;
+        tbody.appendChild(row);
+      });
+
+      totalAmount.textContent = total.toLocaleString();
+    }
+
+    function updateQuantity(index) {
+      const input = document.getElementById(`qty-${index}`);
+      let newQty = parseInt(input.value);
+      if (isNaN(newQty) || newQty < 1) {
+        input.value = cart[index].quantity;
+        showToast("⚠️ Quantity must be at least 1!");
+        return;
+      }
+
+      cart[index].quantity = newQty;
+      localStorage.setItem("cart", JSON.stringify(cart));
+      const newSubtotal = cart[index].price * newQty;
+      document.getElementById(`subtotal-${index}`).textContent = newSubtotal.toLocaleString();
+      updateTotal();
+    }
+
+    function updateTotal() {
+      let total = 0;
+      cart.forEach(item => total += item.price * item.quantity);
+      totalAmount.textContent = total.toLocaleString();
+    }
+
+    function removeItem(index) {
+      const removedItem = cart[index].name;
+      cart.splice(index, 1);
+      localStorage.setItem("cart", JSON.stringify(cart));
+      renderCart();
+      showToast(`❌ ${removedItem} removed from cart!`);
+    }
+
+    function placeOrder() {
+      if (cart.length === 0) {
+        showToast("⚠️ Your cart is empty!");
+        return;
+      }
+      showToast("🛍️ Please fill your delivery address and select a payment method!");
+    }
+
+    // ✅ Payment Function
+    function processPayment() {
+      if (cart.length === 0) {
+        showToast("⚠️ Your cart is empty!");
+        return;
+      }
+
+      // Validate address fields
+      const name = document.getElementById("name").value.trim();
+      const address = document.getElementById("address").value.trim();
+      const city = document.getElementById("city").value.trim();
+      const pincode = document.getElementById("pincode").value.trim();
+      const phone = document.getElementById("phone").value.trim();
+
+      if (!name || !address || !city || !pincode || !phone) {
+        showToast("⚠️ Please fill all delivery address fields!");
+        return;
+      }
+
+      const selected = document.querySelector('input[name="payment"]:checked');
+      if (!selected) {
+        showToast("⚠️ Please select a payment method!");
+        return;
+      }
+
+      const method = selected.value;
+
+      // Save details for confirmation page
+      localStorage.removeItem("cart");
+      cart = [];
+      renderCart();
+
+      const delivery = {
+        name, address, city, pincode, phone, method
+      };
+      localStorage.setItem("deliveryInfo", JSON.stringify(delivery));
+
+      // Redirect to order confirmation
+      setTimeout(() => {
+        window.location.href = "order-confirmed.html";
+      }, 1500);
+    }
+
+    function showToast(message) {
+      const toast = document.getElementById("toast");
+      toast.textContent = message;
+      toast.style.display = "block";
+      toast.classList.add("show");
+      toast.style.background = message.includes("⚠️") || message.includes("❌") ? "#f44336" : "#4CAF50";
+      setTimeout(() => {
+        toast.classList.remove("show");
+        setTimeout(() => (toast.style.display = "none"), 300);
+      }, 2000);
+    }
+
+    renderCart();
+  </script>

@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>NAMMA KADAI - All Products</title>
+  
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f6f6f6;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background: #222;
+      color: white;
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    header h1 { margin: 0; }
+
+    #cart {
+      background: #fff;
+      color: #222;
+      padding: 10px 20px;
+      border-radius: 5px;
+      font-weight: bold;
+    }
+
+    #cart a {
+      text-decoration: none;
+      color: #222;
+    }
+
+    main { padding: 20px; }
+
+    /* 🖼️ Sliding Banner */
+    .slider {
+      width: 100%;
+      max-height: 300px;
+      overflow: hidden;
+      border-radius: 15px;
+      position: relative;
+      margin-bottom: 30px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+
+    .slides {
+      display: flex;
+      width: 300%;
+      animation: slide 12s infinite;
+    }
+
+    .slides img {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+    }
+
+    @keyframes slide {
+      0% { transform: translateX(0); }
+      30% { transform: translateX(0); }
+      35% { transform: translateX(-100%); }
+      65% { transform: translateX(-100%); }
+      70% { transform: translateX(-200%); }
+      100% { transform: translateX(-200%); }
+    }
+
+    /* Products grid */
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .product {
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      padding: 15px;
+      text-align: center;
+      transition: transform 0.2s;
+    }
+
+    .product:hover { transform: scale(1.03); }
+
+    .product img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+
+    .product h3 {
+      margin: 10px 0 5px;
+      font-size: 1.2em;
+    }
+
+    .product p.details {
+      color: #555;
+      font-size: 0.9em;
+      min-height: 45px;
+    }
+
+    input[type="number"] {
+      width: 60px;
+      padding: 5px;
+      margin: 5px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      text-align: center;
+    }
+
+    button {
+      background: #007bff;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+      margin: 5px;
+      transition: background 0.2s;
+    }
+
+    button:hover { background: #0056b3; }
+
+    footer {
+      background: #222;
+      color: white;
+      text-align: center;
+      padding: 10px 0;
+      margin-top: 30px;
+    }
+
+    /* 🧾 Advertisements */
+    .ad-section {
+      background: linear-gradient(135deg, #fff3cd, #ffeeba);
+      border: 2px dashed #ff9900;
+      text-align: center;
+      padding: 25px;
+      border-radius: 10px;
+      margin: 40px 0;
+    }
+
+    .ad-section img {
+      width: 100%;
+      max-height: 220px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin-bottom: 10px;
+    }
+
+    .ad-section h2 {
+      color: #ff6600;
+      font-size: 1.6em;
+      margin-bottom: 10px;
+    }
+
+    /* Toast + Modal */
+    .toast {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #4CAF50;
+      color: white;
+      padding: 15px 25px;
+      border-radius: 8px;
+      display: none;
+      opacity: 0;
+      transition: opacity 0.3s ease, transform 0.3s ease;
+      transform: translateY(100px);
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.6);
+      justify-content: center; align-items: center;
+      z-index: 1000;
+    }
+
+    .modal-content {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      width: 90%;
+      max-width: 400px;
+      text-align: center;
+      position: relative;
+    }
+
+    #close-modal {
+      position: absolute;
+      right: 10px;
+      top: 5px;
+      cursor: pointer;
+      font-size: 1.5em;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🛍️ NAMMA KADAI</h1>
+    <div id="cart">
+      <a href="cart.html">🛒 Cart: <span id="cart-count">0</span></a>
+    </div>
+  </header>
+
+  <main>
+    <!-- 🎞️ Auto Sliding Banner -->
+    <div class="slider">
+      <div class="slides">
+        <img src="mega.jpg" alt="Offer 1">
+        <img src="sale.webp" alt="Offer 2">
+        <img src="smartsale.jpeg" alt="Offer 3">
+      </div>
+    </div>
+
+    <!-- Advertisement 1 -->
+    <div class="ad-section">
+      <h2>🔥 Big Diwali Sale - Up to 70% OFF!</h2>
+      <img src="diwali.jpg" alt="Offer 1">
+      <p>Shop your favorite categories now and enjoy lightning-fast delivery!</p>
+    </div>
+
+    <h2>All Products</h2>
+    <div class="products-grid" id="product-container"></div>
+
+    <!-- Advertisement 2 -->
+    <div class="ad-section">
+      <h2>💎 Exclusive NAMMA KADAI Tech Fest!</h2>
+      <img src="electronic.jpeg" alt="Offer 2">
+      <p>Get latest electronics, gadgets, and accessories with massive discounts!</p>
+    </div>
+
+    <!-- Advertisement 3 -->
+    <div class="ad-section">
+      <h2>🎁 Festive Combos & Gifts 🎉</h2>
+      <img src="banner.jpg" alt="Offer 3">
+      <p>Special combos available only till this weekend!</p>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 NAMMA KADAI. All rights reserved.</p>
+  </footer>
+
+  <div id="toast" class="toast"></div>
+
+  <!-- Product Modal -->
+  <div id="product-modal" class="modal">
+    <div class="modal-content">
+      <span id="close-modal">&times;</span>
+      <img id="modal-image" src="" alt="" style="width:100%; border-radius:8px; margin-bottom:10px;">
+      <h3 id="modal-name"></h3>
+      <p id="modal-price"></p>
+      <p id="modal-details"></p>
+    </div>
+  </div>
+
+  <script>
+    const products = [
+      { name: "T-Shirt", price: 20, image: "tshirt.jpg", details: "Material: 100% cotton, Fit: Regular, Sizes: S-XXL, Color: Black/White/Navy" },
+      { name: "Shoes", price: 50, image: "shoe.jpg", details: "Type: Running, Material: Mesh, Sizes: 6–12 US, Color: Black/White" },
+      { name: "Backpack", price: 35, image: "bag 2.jpeg", details: "Capacity: 30L, Waterproof, Laptop sleeve, USB port" },
+      { name: "Watch", price: 80, image: "watch.jpg", details: "Analog quartz, Leather strap, 5ATM water resistant" },
+      { name: "Hat", price: 15, image: "hat.webp", details: "Baseball cap, 100% Cotton, Adjustable, UV Protection" },
+      { name: "Sunglasses", price: 25, image: "sun glass.jpg", details: "UV400 polarized, Polycarbonate frame, Wayfarer style" },
+      { name: "Apple Laptop (MacBook Air M2)", price: 25000, image: "Apple - Copy.jpg", details: "M2 chip, 13.6” Retina, 8GB RAM, 256GB SSD" },
+      { name: "Wireless Earbuds", price: 120, image: "headphone.webp", details: "Bluetooth 5.3, 40hr battery, Touch control, IPX5" },
+      { name: "Bluetooth Speaker", price: 75, image: "bluetooth.jpeg", details: "20W RMS, 8hr battery, Waterproof, 360° sound" },
+      { name: "Smartphone (Galaxy S24)", price: 700, image: "phone.jpeg", details: "6.2” AMOLED, 8GB RAM, 128GB, 50MP Camera" },
+      { name: "Gaming Console (PlayStation 5)", price: 400, image: "game.jpeg", details: "AMD Ryzen, RDNA 2 GPU, 16GB RAM, 825GB SSD" },
+      { name: "Digital Camera (Canon EOS 90D)", price: 550, image: "cam.jpeg", details: "32.5MP APS-C, 4K video, WiFi, 1300 shots" },
+      { name: "Fitness Tracker (Fitbit Charge 6)", price: 90, image: "run.jpeg", details: "AMOLED, 7-day battery, GPS, Waterproof" },
+      { name: "Coffee Maker", price: 60, image: "coffe maker.jpeg", details: "1.5L, Auto shutoff, Timer, Stainless steel" },
+      { name: "Electric Kettle", price: 40, image: "11.jpeg", details: "1.7L, 2200W, Auto shutoff, Boil-dry protection" },
+      { name: "Desk Lamp", price: 25, image: "table light.jpeg", details: "LED, 3 brightness, Touch control, USB power" },
+      { name: "Office Chair", price: 150, image: "chair.jpeg", details: "Mesh back, Adjustable height, 360° swivel" },
+      { name: "Graphic Tablet (Wacom Intuos Pro)", price: 300, image: "tab.webp", details: "13.2” x 8.5”, 8192 pressure levels, Bluetooth" },
+      { name: "Wireless Mouse", price: 25, image: "wireless mouse.webp", details: "1600 DPI, 2.4GHz wireless, 12-month battery" },
+      { name: "Mechanical Keyboard", price: 70, image: "eayboard.webp", details: "Blue switches, RGB lights, USB, Wrist rest" }
+    ];
+
+    const productContainer = document.getElementById("product-container");
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    updateCartCount();
+
+    products.forEach((p, index) => {
+      const div = document.createElement("div");
+      div.className = "product";
+      div.innerHTML = `
+        <img src="${p.image}" alt="${p.name}" loading="lazy" onerror="this.src='placeholder.jpg'"/>
+        <h3>${p.name}</h3>
+        <p><strong>$${p.price.toLocaleString()}</strong></p>
+        <p class="details">${p.details}</p>
+        <label>Qty:</label>
+        <input type="number" id="qty-${index}" value="1" min="1" />
+        <br>
+        <button id="btn-${index}" onclick="addToCart('${p.name}', ${p.price}, ${index})">Add to Cart</button>
+        <button style="background:#28a745;" onclick="showDetails(${index})">View Details</button>
+      `;
+      productContainer.appendChild(div);
+    });
+
+    function updateCartCount() {
+      const totalQty = cart.reduce((sum, item) => sum + item.quantity, 0);
+      document.getElementById("cart-count").textContent = totalQty;
+    }
+
+    function addToCart(name, price, index) {
+      const qty = parseInt(document.getElementById(`qty-${index}`).value);
+      if (!qty || qty < 1) return showToast("⚠️ Please enter a valid quantity!");
+
+      const existing = cart.find(i => i.name === name);
+      if (existing) {
+        showToast("⚠️ This item is already in your cart!");
+        return;
+      }
+
+      cart.push({ name, price, quantity: qty });
+      localStorage.setItem("cart", JSON.stringify(cart));
+      updateCartCount();
+
+      const btn = document.getElementById(`btn-${index}`);
+      btn.textContent = "Added";
+      btn.disabled = true;
+      btn.style.background = "#28a745";
+      showToast(`${qty} × ${name} added to cart!`);
+    }
+
+    function showToast(msg) {
+      const toast = document.getElementById("toast");
+      toast.textContent = msg;
+      toast.style.display = "block";
+      toast.classList.add("show");
+      toast.style.background = msg.includes("⚠️") ? "#f44336" : "#4CAF50";
+      setTimeout(() => {
+        toast.classList.remove("show");
+        setTimeout(() => toast.style.display = "none", 300);
+      }, 2000);
+    }
+
+    function showDetails(i) {
+      const p = products[i];
+      document.getElementById("modal-name").textContent = p.name;
+      document.getElementById("modal-price").textContent = `$${p.price.toLocaleString()}`;
+      document.getElementById("modal-details").textContent = p.details;
+      document.getElementById("modal-image").src = p.image;
+      document.getElementById("product-modal").style.display = "flex";
+    }
+
+    document.getElementById("close-modal").onclick = () =>
+      document.getElementById("product-modal").style.display = "none";
+
+    document.getElementById("product-modal").addEventListener("click", e => {
+      if (e.target.id === "product-modal")
+        document.getElementById("product-modal").style.display = "none";
+    });
+  
+    
+  </script>
+  
+</body>
+</html>

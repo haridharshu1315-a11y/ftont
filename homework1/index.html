@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Hindusthan College</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+scroll-behavior:smooth;
+}
+
+body{
+background:#f5f8ff;
+}
+
+/* NAVBAR */
+
+nav{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:18px 70px;
+background:linear-gradient(90deg,#002147,#005bea,#00c6ff);
+color:white;
+position:sticky;
+top:0;
+z-index:1000;
+box-shadow:0 5px 15px rgba(0,0,0,.2);
+}
+
+.logo{
+font-size:30px;
+font-weight:bold;
+}
+
+nav ul{
+display:flex;
+list-style:none;
+}
+
+nav ul li{
+margin-left:30px;
+}
+
+nav ul li a{
+color:white;
+text-decoration:none;
+font-size:18px;
+transition:.3s;
+}
+
+nav ul li a:hover{
+color:yellow;
+}
+
+/* HERO */
+
+.hero{
+height:90vh;
+display:flex;
+justify-content:center;
+align-items:center;
+text-align:center;
+background:linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.55)),
+url("https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1600&q=80");
+background-size:cover;
+background-position:center;
+color:white;
+}
+
+.hero h1{
+font-size:60px;
+}
+
+.hero p{
+font-size:22px;
+margin-top:20px;
+}
+
+.hero button{
+margin-top:35px;
+padding:15px 40px;
+border:none;
+border-radius:40px;
+background:#ffcc00;
+font-size:18px;
+cursor:pointer;
+transition:.4s;
+font-weight:bold;
+}
+
+.hero button:hover{
+background:#ff4d4d;
+color:white;
+transform:scale(1.08);
+}
+
+/* ABOUT */
+
+section{
+padding:70px;
+}
+
+.title{
+text-align:center;
+font-size:40px;
+color:#003366;
+margin-bottom:40px;
+}
+
+.about{
+display:flex;
+align-items:center;
+gap:40px;
+flex-wrap:wrap;
+}
+
+.about img{
+width:500px;
+border-radius:20px;
+box-shadow:0 15px 25px rgba(0,0,0,.25);
+}
+
+.about-text{
+flex:1;
+font-size:18px;
+line-height:1.8;
+}
+
+/* CARDS */
+
+.cards{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:30px;
+}
+
+.card{
+background:white;
+padding:30px;
+border-radius:20px;
+text-align:center;
+box-shadow:0 10px 20px rgba(0,0,0,.15);
+transition:.4s;
+}
+
+.card:hover{
+transform:translateY(-10px);
+}
+
+.card h3{
+margin:20px 0;
+color:#005bea;
+}
+
+/* STATS */
+
+.stats{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+gap:25px;
+}
+
+.box{
+background:linear-gradient(45deg,#005bea,#00c6ff);
+padding:40px;
+color:white;
+border-radius:20px;
+text-align:center;
+}
+
+.box h2{
+font-size:45px;
+}
+
+/* FOOTER */
+
+footer{
+background:#001f3f;
+color:white;
+text-align:center;
+padding:25px;
+margin-top:40px;
+}
+
+@media(max-width:768px){
+
+nav{
+padding:15px;
+flex-direction:column;
+}
+
+nav ul{
+margin-top:15px;
+}
+
+.hero h1{
+font-size:38px;
+}
+
+.about{
+flex-direction:column;
+}
+
+.about img{
+width:100%;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<nav>
+
+<div class="logo">🎓 Hindusthan College</div>
+
+<ul>
+<li><a href="#">Home</a></li>
+<li><a href="#">About</a></li>
+<li><a href="#">Courses</a></li>
+<li><a href="#">Campus</a></li>
+<li><a href="#">Placements</a></li>
+<li><a href="#">Contact</a></li>
+</ul>
+
+</nav>
+
+<div class="hero">
+
+<div>
+
+<h1>Welcome to Hindusthan College</h1>
+
+<p>Empowering Students with Innovation, Knowledge & Excellence.</p>
+
+<button>Apply Now</button>
+
+</div>
+
+</div>
+
+<section>
+
+<h2 class="title">About College</h2>
+
+<div class="about">
+
+<img src="https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=900&q=80">
+
+<div class="about-text">
+
+Hindusthan College is dedicated to academic excellence, innovation,
+research and career development. Students gain knowledge through
+modern laboratories, experienced faculty, industrial exposure,
+placement training and extracurricular activities.
+
+<br><br>
+
+✔ Modern Campus
+
+<br>
+
+✔ Digital Classrooms
+
+<br>
+
+✔ Library
+
+<br>
+
+✔ Placement Training
+
+<br>
+
+✔ Sports & Cultural Activities
+
+</div>
+
+</div>
+
+</section>
+
+<section>
+
+<h2 class="title">Popular Courses</h2>
+
+<div class="cards">
+
+<div class="card">
+
+<h3>💻 Computer Science</h3>
+
+<p>Artificial Intelligence, Web Development, Cloud Computing and Software Engineering.</p>
+
+</div>
+
+<div class="card">
+
+<h3>🤖 Artificial Intelligence</h3>
+
+<p>Machine Learning, Data Science and Intelligent Systems.</p>
+
+</div>
+
+<div class="card">
+
+<h3>⚙ Mechanical Engineering</h3>
+
+<p>Modern Manufacturing and Industrial Technologies.</p>
+
+</div>
+
+<div class="card">
+
+<h3>⚡ Electronics & Communication</h3>
+
+<p>Embedded Systems, IoT and Communication Technologies.</p>
+
+</div>
+
+</div>
+
+</section>
+
+<section>
+
+<h2 class="title">Campus Facilities</h2>
+
+<div class="cards">
+
+<div class="card">
+🏫
+<h3>Smart Classrooms</h3>
+</div>
+
+<div class="card">
+📚
+<h3>Central Library</h3>
+</div>
+
+<div class="card">
+🧪
+<h3>Modern Laboratories</h3>
+</div>
+
+<div class="card">
+🏆
+<h3>Sports Complex</h3>
+</div>
+
+<div class="card">
+🍴
+<h3>Cafeteria</h3>
+</div>
+
+<div class="card">
+🚌
+<h3>Transport</h3>
+</div>
+
+</div>
+
+</section>
+
+<section>
+
+<h2 class="title">Our Achievements</h2>
+
+<div class="stats">
+
+<div class="box">
+<h2>5000+</h2>
+Students
+</div>
+
+<div class="box">
+<h2>150+</h2>
+Faculty
+</div>
+
+<div class="box">
+<h2>95%</h2>
+Placement Support
+</div>
+
+<div class="box">
+<h2>100+</h2>
+Recruiters
+</div>
+
+</div>
+
+</section>
+
+<footer>
+
+<h2>Hindusthan College</h2>
+
+<p>Innovation • Excellence • Success</p>
+
+<p>© 2026 All Rights Reserved</p>
+
+</footer>
+
+</body>
+</html>

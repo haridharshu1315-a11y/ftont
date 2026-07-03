@@ -1,0 +1,38 @@
+let otpCode = "";
+let isOtpSent = false;
+
+// 📲 Send OTP when user clicks Pay Now
+function processPayment() {
+  if (cart.length === 0) {
+    showToast("⚠️ Your cart is empty!");
+    return;
+  }
+
+  const name = document.getElementById("name").value.trim();
+  const address = document.getElementById("address").value.trim();
+  const city = document.getElementById("city").value.trim();
+  const pincode = document.getElementById("pincode").value.trim();
+  const phone = document.getElementById("phone").value.trim();
+
+  if (!name || !address || !city || !pincode || !phone) {
+    showToast("⚠️ Fill all address fields!");
+    return;
+  }
+
+  const selected = document.querySelector('input[name="payment"]:checked');
+  if (!selected) {
+    showToast("⚠️ Select payment method!");
+    return;
+  }
+
+  // 🔐 Generate OTP
+  otpCode = Math.floor(100000 + Math.random() * 900000).toString();
+  console.log("OTP:", otpCode); // testing only
+
+  isOtpSent = true;
+
+  // Show OTP box
+  document.getElementById("otp-box").style.display = "block";
+
+  showToast("📩 OTP sent to your phone!");
+}

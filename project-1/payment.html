@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Payment - My Online Store</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f8f8f8;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background: #222;
+      color: white;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    main {
+      padding: 20px;
+      max-width: 600px;
+      margin: 40px auto;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      text-align: center;
+      color: #333;
+    }
+
+    .total {
+      text-align: center;
+      font-size: 1.3em;
+      margin: 15px 0;
+    }
+
+    label {
+      display: block;
+      margin: 10px 0 5px;
+      font-weight: bold;
+    }
+
+    select, input[type="text"], input[type="number"] {
+      width: 100%;
+      padding: 8px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      margin-bottom: 10px;
+    }
+
+    button {
+      background: #28a745;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+      width: 100%;
+      font-size: 1em;
+    }
+
+    button:hover {
+      background: #218838;
+    }
+
+    .confirmation {
+      display: none;
+      text-align: center;
+      padding: 20px;
+      color: #28a745;
+      font-weight: bold;
+      font-size: 1.2em;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h2>💳 Payment Page</h2>
+    <a href="cart.html" style="color:white;text-decoration:none;">⬅ Back to Cart</a>
+  </header>
+
+  <main>
+    <h2>Complete Your Payment</h2>
+    <div class="total">Order Total: $<span id="orderTotal">0</span></div>
+
+    <label for="paymentMethod">Select Payment Method:</label>
+    <select id="paymentMethod">
+      <option value="cod">Cash on Delivery</option>
+      <option value="card">Credit / Debit Card</option>
+      <option value="upi">UPI / Google Pay</option>
+    </select>
+
+    <div id="paymentDetails"></div>
+
+    <button onclick="confirmPayment()">Confirm Payment</button>
+
+    <div class="confirmation" id="confirmationMessage">✅ Your order has been placed successfully!</div>
+  </main>
+
+  <script>
+    // Show total from cart
+    document.getElementById("orderTotal").textContent = localStorage.getItem("orderTotal") || "0";
+
+    const paymentMethod = document.getElementById("paymentMethod");
+    const paymentDetails = document.getElementById("paymentDetails");
+    const confirmationMessage = document.getElementById("confirmationMessage");
+
+    paymentMethod.addEventListener("change", showPaymentFields);
+
+    function showPaymentFields() {
+      const method = paymentMethod.value;
+      let html = "";
+
+      if (method === "card") {
+        html = `
+          <label>Card Number:</label>
+          <input type="number" placeholder="Enter 16-digit card number" maxlength="16">
+          <label>Expiry Date:</label>
+          <input type="text" placeholder="MM/YY">
+          <label>CVV:</label>
+          <input type="number" placeholder="123" maxlength="3">
+        `;
+      } else if (method === "upi") {
+        html = `
+          <label>UPI ID:</label>
+          <input type="text" placeholder="example@upi">
+        `;
+      } else {
+        html = `<p style="color:#555;">Pay when you receive your order (Cash on Delivery).</p>`;
+      }
+
+      paymentDetails.innerHTML = html;
+    }
+
+    showPaymentFields();
+
+    function confirmPayment() {
+      document.querySelector("main").style.display = "none";
+      confirmationMessage.style.display = "block";
+      localStorage.removeItem("cart");
+    }
+  </script>
+</body>
+</html>

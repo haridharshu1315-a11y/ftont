@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Order Confirmed - NAMMA KADAI</title>
+  <style>
+    /* ✨ Beautiful Gradient Background with Animated Confetti */
+    body {
+      font-family: "Poppins", Arial, sans-serif;
+      background: linear-gradient(135deg, #f9f9f9, #d4fcd3, #f0fff9);
+      background-size: 400% 400%;
+      animation: gradientMove 10s ease infinite;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+      overflow-x: hidden;
+    }
+
+    @keyframes gradientMove {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    header {
+      background: linear-gradient(90deg, #28a745, #34ce57);
+      color: white;
+      padding: 25px 0;
+      font-size: 1.8em;
+      letter-spacing: 1px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+
+    main {
+      background: white;
+      max-width: 700px;
+      margin: 50px auto;
+      padding: 40px;
+      border-radius: 15px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+      position: relative;
+      z-index: 2;
+    }
+
+    .emoji {
+      font-size: 4em;
+      margin: 20px 0;
+      animation: bounce 1.5s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    h2 {
+      color: #28a745;
+      font-size: 2em;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 1.05em;
+      color: #444;
+      margin: 8px 0;
+    }
+
+    .order-id {
+      background: #e9ffe9;
+      padding: 12px 18px;
+      border-radius: 5px;
+      font-weight: bold;
+      display: inline-block;
+      margin-top: 10px;
+    }
+
+    .total {
+      font-size: 1.2em;
+      color: #333;
+      margin-top: 12px;
+      background: #f6fff6;
+      display: inline-block;
+      padding: 10px 18px;
+      border-radius: 6px;
+      font-weight: bold;
+    }
+
+    .details {
+      text-align: left;
+      margin-top: 20px;
+      padding: 20px;
+      background: #f8fdf8;
+      border-left: 5px solid #28a745;
+      border-radius: 10px;
+    }
+
+    .details h3 {
+      color: #222;
+      margin-top: 0;
+      font-size: 1.2em;
+    }
+
+    .details p {
+      margin: 6px 0;
+      font-size: 0.95em;
+    }
+
+    .btn {
+      background: linear-gradient(90deg, #007bff, #0056b3);
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 6px;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 22px;
+      font-size: 1.05em;
+      transition: transform 0.2s, box-shadow 0.3s;
+    }
+
+    .btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 40px;
+      color: #555;
+      font-size: 0.9em;
+      padding-bottom: 20px;
+    }
+
+    /* 🎊 Floating Confetti */
+    .confetti {
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      background: #ff4081;
+      top: -10px;
+      animation: fall 6s infinite ease-in;
+      border-radius: 50%;
+      opacity: 0.8;
+    }
+
+    @keyframes fall {
+      0% { transform: translateY(0) rotate(0deg); }
+      100% { transform: translateY(100vh) rotate(720deg); }
+    }
+  </style>
+</head>
+<body>
+  <header>🎉 Order Confirmed!</header>
+
+  <!-- 🎊 Confetti elements -->
+  <script>
+    for (let i = 0; i < 30; i++) {
+      const conf = document.createElement("div");
+      conf.className = "confetti";
+      conf.style.left = Math.random() * 100 + "vw";
+      conf.style.background = `hsl(${Math.random() * 360}, 80%, 60%)`;
+      conf.style.animationDuration = (5 + Math.random() * 3) + "s";
+      conf.style.animationDelay = Math.random() * 2 + "s";
+      document.body.appendChild(conf);
+    }
+  </script>
+
+  <main>
+    <div class="emoji">✅</div>
+    <h2>Thank you — your order has been placed!</h2>
+    <p>We've received your order and will deliver it to your doorstep soon.</p>
+
+    <div class="order-id" id="orderId">Order ID: --</div>
+    <div class="total" id="totalAmount">Total: ₹0</div>
+
+    <div class="details" id="deliveryDetails">
+      <h3>📦 Delivery Information</h3>
+      <p><strong>Name:</strong> <span id="name">-</span></p>
+      <p><strong>Address:</strong> <span id="address">-</span></p>
+      <p><strong>City:</strong> <span id="city">-</span></p>
+      <p><strong>Pincode:</strong> <span id="pincode">-</span></p>
+      <p><strong>Phone:</strong> <span id="phone">-</span></p>
+      <p><strong>Payment Method:</strong> <span id="method">-</span></p>
+    </div>
+
+    <button id="continueBtn" class="btn">🛍️ Continue Shopping</button>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 NAMMA KADAI. All rights reserved.</p>
+  </footer>
+
+  <script>
+    const orderId = "ORD" + Math.floor(100000 + Math.random() * 900000);
+    document.getElementById("orderId").textContent = "Order ID: " + orderId;
+
+    const info = JSON.parse(localStorage.getItem("deliveryInfo"));
+    const total = localStorage.getItem("cartTotal") || "0";
+
+    if (info) {
+      document.getElementById("name").textContent = info.name || "-";
+      document.getElementById("address").textContent = info.address || "-";
+      document.getElementById("city").textContent = info.city || "-";
+      document.getElementById("pincode").textContent = info.pincode || "-";
+      document.getElementById("phone").textContent = info.phone || "-";
+      document.getElementById("method").textContent = info.method || "-";
+      document.getElementById("totalAmount").textContent = "Total: ₹" + total;
+    } else {
+      document.getElementById("deliveryDetails").innerHTML =
+        "<p>No delivery information found. Please go back and complete your purchase again.</p>";
+    }
+
+    localStorage.removeItem("deliveryInfo");
+    localStorage.removeItem("cart");
+    localStorage.removeItem("cartTotal");
+
+    document.getElementById("continueBtn").addEventListener("click", () => {
+      window.location.href = "index.html";
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,131 @@
+.calculator-page {
+  min-height: 100svh;
+  display: grid;
+  place-items: center;
+  padding: 32px 16px;
+  background:
+    radial-gradient(circle at top left, rgba(45, 212, 191, 0.22), transparent 34%),
+    linear-gradient(135deg, #111827 0%, #243447 55%, #16213a 100%);
+}
+
+.calculator-shell {
+  width: min(100%, 380px);
+  padding: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 8px;
+  background: rgba(13, 19, 33, 0.9);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
+}
+
+.calculator-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+  color: #d9f99d;
+  font-size: 14px;
+}
+
+.calculator-header p {
+  margin: 0;
+  color: #f8fafc;
+  font-weight: 700;
+}
+
+.calculator-header span {
+  min-width: 76px;
+  text-align: right;
+  color: #a7f3d0;
+}
+
+.display {
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 92px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  margin-bottom: 16px;
+  padding: 18px;
+  overflow: hidden;
+  border-radius: 8px;
+  background: #eef2ff;
+  color: #111827;
+  font-size: 42px;
+  font-weight: 800;
+  line-height: 1;
+  word-break: break-all;
+}
+
+.button-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+.calc-button {
+  min-height: 62px;
+  border: 0;
+  border-radius: 8px;
+  background: #334155;
+  color: #f8fafc;
+  font: inherit;
+  font-size: 20px;
+  font-weight: 800;
+  cursor: pointer;
+  transition:
+    transform 0.14s ease,
+    background 0.14s ease,
+    box-shadow 0.14s ease;
+}
+
+.calc-button:hover {
+  background: #475569;
+  box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.08);
+}
+
+.calc-button:active {
+  transform: translateY(1px) scale(0.98);
+}
+
+.calc-button:focus-visible {
+  outline: 3px solid #67e8f9;
+  outline-offset: 2px;
+}
+
+.calc-button.operator {
+  background: #0f766e;
+}
+
+.calc-button.operator:hover {
+  background: #0d9488;
+}
+
+.calc-button.utility {
+  background: #64748b;
+}
+
+.calc-button.utility:hover {
+  background: #7890ab;
+}
+
+.calc-button.zero {
+  grid-column: span 2;
+}
+
+@media (max-width: 420px) {
+  .calculator-shell {
+    padding: 14px;
+  }
+
+  .display {
+    min-height: 78px;
+    font-size: 34px;
+  }
+
+  .calc-button {
+    min-height: 56px;
+    font-size: 18px;
+  }
+}

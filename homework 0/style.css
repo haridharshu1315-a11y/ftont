@@ -1,0 +1,388 @@
+/* ===============================
+   GOOGLE FONT
+================================= */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+/* ===============================
+   RESET
+================================= */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:#f8f8f8;
+    color:#333;
+}
+
+/* ===============================
+   NAVBAR
+================================= */
+
+header{
+    position:sticky;
+    top:0;
+    z-index:1000;
+}
+
+nav{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:18px 60px;
+    background:linear-gradient(90deg,#ff512f,#dd2476);
+    box-shadow:0 5px 15px rgba(0,0,0,.2);
+}
+
+.logo{
+    color:#fff;
+    font-size:30px;
+    font-weight:bold;
+}
+
+nav ul{
+    display:flex;
+    list-style:none;
+}
+
+nav ul li{
+    margin-left:30px;
+}
+
+nav ul li a{
+    color:white;
+    text-decoration:none;
+    font-size:17px;
+    transition:.3s;
+}
+
+nav ul li a:hover{
+    color:yellow;
+}
+
+/* ===============================
+   HERO
+================================= */
+
+.hero{
+    height:90vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    color:white;
+    background:linear-gradient(rgba(0,0,0,.5),rgba(0,0,0,.5)),
+    url("images/banner.jpg");
+    background-size:cover;
+    background-position:center;
+}
+
+.hero h1{
+    font-size:60px;
+}
+
+.hero p{
+    margin:20px 0;
+    font-size:22px;
+}
+
+.btn{
+    display:inline-block;
+    padding:15px 35px;
+    background:#ff9800;
+    color:white;
+    text-decoration:none;
+    border-radius:40px;
+    transition:.4s;
+}
+
+.btn:hover{
+    background:#4CAF50;
+    transform:scale(1.08);
+}
+
+/* ===============================
+   SEARCH
+================================= */
+
+.search-box{
+    text-align:center;
+    margin:50px;
+}
+
+.search-box input{
+    width:400px;
+    max-width:90%;
+    padding:15px;
+    border-radius:40px;
+    border:2px solid #ff5722;
+    outline:none;
+}
+
+/* ===============================
+   SECTION TITLE
+================================= */
+
+.title{
+    text-align:center;
+    font-size:40px;
+    color:#ff512f;
+    margin:40px 0;
+}
+
+/* ===============================
+   FOOD CARDS
+================================= */
+
+.food-container{
+    width:90%;
+    margin:auto;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:30px;
+}
+
+.food-card{
+    background:white;
+    border-radius:20px;
+    overflow:hidden;
+    box-shadow:0 10px 20px rgba(0,0,0,.15);
+    transition:.4s;
+}
+
+.food-card:hover{
+    transform:translateY(-10px);
+}
+
+.food-card img{
+    width:100%;
+    height:220px;
+    object-fit:cover;
+}
+
+.food-card h3{
+    padding:15px;
+}
+
+.food-card p{
+    padding:0 15px;
+    color:#666;
+}
+
+.price{
+    color:#ff5722;
+    font-size:22px;
+    font-weight:bold;
+    padding:10px 15px;
+}
+
+.food-card button{
+    width:90%;
+    margin:15px;
+    padding:12px;
+    border:none;
+    border-radius:30px;
+    background:#ff5722;
+    color:white;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.food-card button:hover{
+    background:#4CAF50;
+}
+
+/* ===============================
+   OFFER
+================================= */
+
+.offer{
+    width:90%;
+    margin:60px auto;
+    background:linear-gradient(90deg,#ff512f,#f09819);
+    color:white;
+    padding:40px;
+    border-radius:20px;
+    text-align:center;
+}
+
+.offer h2{
+    font-size:40px;
+}
+
+/* ===============================
+   CART
+================================= */
+
+.cart{
+    width:90%;
+    margin:auto;
+}
+
+.cart table{
+    width:100%;
+    border-collapse:collapse;
+    background:white;
+}
+
+.cart th,
+.cart td{
+    padding:15px;
+    border:1px solid #ddd;
+    text-align:center;
+}
+
+.cart th{
+    background:#ff5722;
+    color:white;
+}
+
+.total{
+    text-align:right;
+    margin-top:20px;
+    font-size:24px;
+    font-weight:bold;
+}
+
+/* ===============================
+   FORM
+================================= */
+
+form{
+    width:500px;
+    max-width:95%;
+    margin:auto;
+    background:white;
+    padding:30px;
+    border-radius:20px;
+    box-shadow:0 5px 15px rgba(0,0,0,.2);
+}
+
+form input,
+form textarea,
+form select{
+    width:100%;
+    padding:15px;
+    margin:12px 0;
+    border:1px solid #ccc;
+    border-radius:10px;
+}
+
+form button{
+    width:100%;
+    padding:15px;
+    background:#ff5722;
+    color:white;
+    border:none;
+    border-radius:30px;
+    cursor:pointer;
+}
+
+form button:hover{
+    background:#4CAF50;
+}
+
+/* ===============================
+   MAP
+================================= */
+
+.map{
+    width:90%;
+    margin:60px auto;
+}
+
+.map iframe{
+    width:100%;
+    height:450px;
+    border:none;
+    border-radius:20px;
+}
+
+/* ===============================
+   REVIEW
+================================= */
+
+.review-container{
+    width:90%;
+    margin:auto;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+    gap:25px;
+}
+
+.review{
+    background:white;
+    padding:25px;
+    border-radius:20px;
+    box-shadow:0 5px 15px rgba(0,0,0,.15);
+}
+
+/* ===============================
+   FOOTER
+================================= */
+
+footer{
+    background:#222;
+    color:white;
+    text-align:center;
+    padding:30px;
+    margin-top:50px;
+}
+
+/* ===============================
+   DARK MODE
+================================= */
+
+.dark{
+    background:#121212;
+    color:white;
+}
+
+.dark .food-card,
+.dark form,
+.dark .review,
+.dark table{
+    background:#222;
+    color:white;
+}
+
+/* ===============================
+   RESPONSIVE
+================================= */
+
+@media(max-width:768px){
+
+nav{
+    flex-direction:column;
+    padding:20px;
+}
+
+nav ul{
+    flex-direction:column;
+    margin-top:20px;
+}
+
+nav ul li{
+    margin:10px 0;
+}
+
+.hero h1{
+    font-size:38px;
+}
+
+.hero p{
+    font-size:18px;
+}
+
+.title{
+    font-size:30px;
+}
+
+}
