@@ -5,3 +5,7 @@ __MACOSX/
 dist/
 build/
 .vite/
+~$*
+target/
+
+
